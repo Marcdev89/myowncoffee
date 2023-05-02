@@ -1,114 +1,58 @@
-// import { Navigate } from "react-router-dom";
-// import { useState } from "react";
+import { useContext, createContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./login.css";
-import { useRef } from "react";
-import api from "../Services/api";
+import LoginContext from "./loginContext";
+import { Container } from "react-bootstrap";
 
-const sendData = async (url, data) => {
-   const resp = await fetch(api.customer, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type':'application/json'
-        }
-    })
-    console.log(resp)
-    const json = await resp.json()
-    console.log(json)
-
-}
-
-
-const Login = () =>{
-
-    const refUser= useRef(null)
-    const refMail =useRef(null)
-
-    const handleLogin=()=>{
-        const data = {
-            "user": refUser.current.value,
-            "mail": refMail.current.value
-        }
-        console.log(data);
-        sendData(api.customer, data);
-   
-    }
+export const IsLogContext = createContext();
 
 
 
-    return ( <div className="login">
-        <div className="container"> 
-        <h3>Iniciar Sesión</h3>
-    <Form>
+
+function Login (){
+
+  const {refUser, refMail, log, handleLogin, logOut} = useContext(LoginContext);
+
+    return (
       
+      
+      <Container className="login">
+        {!log ?
+          (     
+          <Container className="container-form"> 
+           <h3>Iniciar Sesión</h3>
+            <Form >
+              <Form.Group  className="mb-3" controlId="formBasicPassword">
+                <Form.Label >Nombre de usuario/a</Form.Label>
+                <Form.Control ref={refUser} type="text" placeholder="Escribe aquí el nombre..." />
+              </Form.Group>
 
-      <Form.Group  className="mb-3" controlId="formBasicPassword">
-        <Form.Label >Username</Form.Label>
-        <Form.Control ref={refUser} type="text" placeholder="username" />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control ref={refMail}  type="email" placeholder="example@email.com" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-    
-      <Button onClick={handleLogin} variant="primary">
-        Acceder
-      </Button>
-    </Form>
-    
-    
-    
-    </div>
-    </div>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Correo electrónico</Form.Label>
+                <Form.Control ref={refMail}  type="email" placeholder="example@email.com" />
+                <Form.Text className="text-muted">
+                  No compartiremos tu e-mail con nadie más.
+                </Form.Text>
+              </Form.Group>
+                <Button  onClick={handleLogin} variant="dark">
+                  Acceder
+                </Button>
+              </Form>
+          </Container>
+          ):(
+          <Container className="container-form">
+            <h2>Bienvenido/a, {localStorage.getItem('name')}</h2>
+              <br></br>
+                <Button onClick={logOut} variant="dark">
+                  Log out
+                </Button>
+          </Container>
+          )
+          }
+      </Container>
     )
 }
-
-// const Login = () => {
-
-//     const [user, setUser] = useState(null)
-//     const [error, setError] = useState(null)
-
-//   function login () {
-// }
-
-//     const  handleSubmit=(e) => {
-//         e.preventDefault();
-//         try {
-//           let user = login(e.target);
-//           setUser(user)
-//         } catch (error) {
-//           setError(error)
-//         }
-//       }
-    
-        
-    
-
-
-//         return (
-//           <div>
-//             {error && <p>{error.message}</p>}
-//             {user && (
-//               <Navigate to="/dashboard" replace={true} />
-//             )}
-//             <form
-//               onSubmit={(e) => this.handleSubmit(e)}
-//             >
-//               <input type="text" name="username" />
-//               <input type="password" name="password" />
-//             </form>
-//           </div>
-//         );
-//       }
-    
-  
 
 
 export default Login

@@ -1,12 +1,19 @@
 .login {
 
-    position: relative;
-    display: flex;
-    align-items: center;
+    
+ 
+    width: 60vh;
     /* top:5%;
     left: 5%;
     right: 5%;
     height: 100%;
     width: 100%; */
    
+}
+.container-form{
+    margin-top: 15vh;
+    margin-bottom: 50vh;
+    width: 50vh;
+    
+
 }

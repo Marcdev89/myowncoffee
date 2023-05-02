@@ -1,0 +1,40 @@
+/* ///// GENERAL STYLES ///// */
+.myblends-style{
+    align-items: center;
+}
+.myblends-page{
+    width: 10vw;
+    align-items: center;;
+   text-align: center;
+}
+/* ///// TOP SIDE ///// */
+.title-style{
+    min-height: 30vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    padding-top: 13vh;        
+}
+
+h1{
+    font-family:  Georgia, 'Times New Roman', Times, serif;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.455);
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.455);
+    padding-bottom: 1vh;
+}
+/* ///// BODY ///// */
+.myblends-p-style{
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.myblends{
+    width: auto;
+    height: 18vh;
+    margin-bottom: 3vh;
+}
+
+.myblends-item{
+    margin-bottom: 1vh;
+}
